@@ -1,0 +1,11 @@
+@media print {
+    .no-print, button, nav, .payment-gate {
+        display: none !important; /* Ukrywa interfejs strony na wydruku */
+    }
+    body {
+        font-family: "Times New Roman", serif;
+        line-height: 1.5;
+        color: black;
+    }
+    h1, h2 { text-align: center; text-transform: uppercase; }
+}
