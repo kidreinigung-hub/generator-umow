@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalTech Pro - Generator Umów</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Mono&display=swap');
+        
+        :root {
+            --brand-blue: #2563eb;
+            --legal-gray: #f8fafc;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #1e293b;
+        }
+
+        .paper {
+            background-color: #ffffff;
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 20px auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .legal-input {
+            border: none;
+            border-bottom: 1px solid #cbd5e1;
+            background: #f1f5f9;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 600;
+            color: var(--brand-blue);
+            padding: 0 4px;
+        }
+
+        .legal-input:focus {
+            outline: none;
+            border-bottom: 2px solid var(--brand-blue);
+            background: #fff;
+        }
+
+        .clause-title {
+            font-weight: 800;
+            text-transform: uppercase;
+            border-left: 4px solid var(--brand-blue);
+            padding-left: 10px;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        .adsense-box {
+            background: #1e293b;
+            border: 1px dashed #334155;
+            color: #475569;
+            text-align: center;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 728px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; }
+            .paper { margin: 0; box-shadow: none; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <nav class="no-print sticky top-0 bg-slate-900 border-b border-slate-700 z-50 p-4 text-white">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="bg-blue-600 p-1.svg rounded">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                </div>
+                <span class="font-extrabold tracking-tighter text-xl uppercase italic">LegalTech<span class="text-blue-500 italic">Vault</span></span>
+            </div>
+            
+            <div class="flex gap-4">
+                <select id="signing-method" class="bg-slate-800 border border-slate-600 rounded px-3 py-2 text-sm font-bold">
+                    <option value="print">Opcja A: Druk i podpis własnoręczny</option>
+                    <option value="digital">Opcja B: E-podpis (Autenti/DocuSign)</option>
+                </select>
+                <button onclick="openPayment()" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded font-black uppercase text-sm transition shadow-lg shadow-blue-500/20">
+                    Finalizuj Umowę (9 PLN)
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="adsense-box no-print">MIEJSCE NA REKLAMĘ ADSENSE (LEADERBOARD TOP)</div>
+
+    <!-- Dokument -->
+    <div class="paper" id="contract">
+        <div class="text-center mb-10">
+            <h1 class="text-2xl font-black uppercase tracking-widest border-b-4 border-black inline-block pb-1">Umowa Najmu Lokalu Mieszkalnego</h1>
+            <p class="mt-4 text-sm font-bold">Zawarta w dniu <input type="text" class="legal-input w-32" placeholder="Data"> r. w <input type="text" class="legal-input w-40" placeholder="Miejscowość"></p>
+        </div>
+
+        <div class="space-y-6 text-xs leading-relaxed text-justify">
+            
+            <!-- Strony i Weryfikacja -->
+            <section>
+                <div class="clause-title">§ 1. Strony Umowy i Weryfikacja Tożsamości</div>
+                <p><strong>Wynajmujący:</strong> <input type="text" class="legal-input w-full" placeholder="Imię, nazwisko, adres, PESEL, nr dowodu osobistego"></p>
+                <p class="mt-2"><strong>Najemca:</strong> <input type="text" class="legal-input w-full" placeholder="Imię, nazwisko, adres, PESEL, nr dowodu osobistego"></p>
+                <p class="mt-2 text-[10px] italic text-gray-600">Najemca przedkłada do wglądu dokument tożsamości ze zdjęciem i oświadcza, że wszelkie podane dane są zgodne ze stanem faktycznym.</p>
+            </section>
+
+            <!-- Bezpiecznik: Finanse -->
+            <section>
+                <div class="clause-title">§ 2. Oświadczenie o Stanie Majątkowym</div>
+                <p>Najemca oświadcza, że posiada stałe źródło dochodów umożliwiające terminowe regulowanie czynszu oraz opłat eksploatacyjnych przez cały okres trwania najmu. Najemca zobowiązuje się do niezwłocznego poinformowania Wynajmującego o utracie płynności finansowej.</p>
+            </section>
+
+            <!-- Bezpiecznik: Ochrona Mienia -->
+            <section>
+                <div class="clause-title">§ 3. Zakaz Zmian i Ochrona Mienia</div>
+                <p>1. Najemcy zabrania się dokonywania jakichkolwiek zmian w lokalu, w tym m.in. malowania ścian, wbijania gwoździ, wymiany zamków czy ingerencji w instalacje, bez uprzedniej <strong>pisemnej zgody</strong> Wynajmującego pod rygorem <strong>natychmiastowego wypowiedzenia umowy</strong>.</p>
+                <p>2. Wszyscy mieszkańcy lokalu ponoszą <strong>solidarną odpowiedzialność</strong> za wszelkie zobowiązania wynikające z niniejszej umowy.</p>
+            </section>
+
+            <!-- Bezpiecznik: Ubezpieczenie -->
+            <section>
+                <div class="clause-title">§ 4. Ubezpieczenie OC Najemcy</div>
+                <p>Najemca zobowiązany jest do posiadania ważnej polisy ubezpieczenia Odpowiedzialności Cywilnej (OC) w życiu prywatnym, obejmującej szkody w najmowanym mieniu, na kwotę nie mniejszą niż <input type="text" class="legal-input w-24" placeholder="Kwota"> PLN, z cesją praw na Wynajmującego.</p>
+            </section>
+
+            <!-- Bezpiecznik: Inspekcje -->
+            <section>
+                <div class="clause-title">§ 5. Prawo do Kontroli Lokalu</div>
+                <p>Wynajmujący zastrzega sobie prawo do dokonania inspekcji stanu technicznego lokalu raz w miesiącu. O zamiarze kontroli Wynajmujący powiadomi Najemcę (telefonicznie lub e-mailem) z wyprzedzeniem co najmniej <strong>24 godzin</strong>.</p>
+            </section>
+
+            <!-- Bezpiecznik: Kaucja -->
+            <section>
+                <div class="clause-title">§ 6. Kaucja Gwarancyjna</div>
+                <p>Najemca wpłaca kaucję w wysokości <input type="text" class="legal-input w-24" placeholder="Kwota"> PLN. Strony zgodnie ustalają, że kaucja <strong>nie może zostać zaliczona na poczet ostatniego czynszu najmu</strong>. Kaucja służy wyłącznie zabezpieczeniu roszczeń Wynajmującego z tytułu zniszczeń mienia lub zaległych opłat.</p>
+            </section>
+
+            <!-- Podpisy -->
+            <div class="mt-20 flex justify-between">
+                <div class="w-56 text-center border-t border-black pt-2">
+                    <p class="font-bold uppercase text-[9px]">Wynajmujący</p>
+                    <p class="text-[8px] text-gray-400 mt-1">(czytelny podpis lub e-podpis)</p>
+                </div>
+                <div class="w-56 text-center border-t border-black pt-2">
+                    <p class="font-bold uppercase text-[9px]">Najemca</p>
+                    <p class="text-[8px] text-gray-400 mt-1">(czytelny podpis lub e-podpis)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="adsense-box no-print">MIEJSCE NA REKLAMĘ ADSENSE (NATIVE / RECOMMENDATION)</div>
+
+    <!-- Modal Płatności -->
+    <div id="payment-modal" class="fixed inset-0 bg-slate-950/95 z-[100] hidden flex items-center justify-center p-4 no-print">
+        <div class="bg-white rounded-xl max-w-md w-full p-8 text-center border-b-8 border-blue-600">
+            <h2 class="text-2xl font-black uppercase mb-2">Finalizacja Zamówienia</h2>
+            <p id="method-desc" class="text-sm text-slate-500 mb-6">Wybierz bezpieczną płatność, aby wygenerować dokument.</p>
+            
+            <div class="bg-slate-100 p-6 rounded-lg mb-6">
+                <span class="block text-xs uppercase font-bold text-slate-400 mb-1">Do zapłaty:</span>
+                <span class="text-4xl font-black">9.00 PLN</span>
+            </div>
+
+            <button onclick="simulatePaymentSuccess()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-4 rounded-lg uppercase tracking-wider shadow-lg transition">
+                Zapłać przez BLIK / Karta
+            </button>
+            <button onclick="closePayment()" class="mt-4 text-xs font-bold text-slate-400 uppercase">Anuluj</button>
+        </div>
+    </div>
+
+    <script>
+        function openPayment() {
+            const method = document.getElementById('signing-method').value;
+            const desc = document.getElementById('method-desc');
+            
+            if(method === 'digital') {
+                desc.innerHTML = "<strong>Opcja E-podpis:</strong> Po opłaceniu, system wyśle umowę do platformy Autenti. Otrzymacie linki do podpisu mailem.";
+            } else {
+                desc.innerHTML = "<strong>Opcja Druk:</strong> Po opłaceniu odblokujemy generowanie pliku PDF z miejscem na własnoręczne podpisy i parafki.";
+            }
+            
+            document.getElementById('payment-modal').classList.remove('hidden');
+        }
+
+        function closePayment() {
+            document.getElementById('payment-modal').classList.add('hidden');
+        }
+
+        function simulatePaymentSuccess() {
+            const method = document.getElementById('signing-method').value;
+            const btn = event.target;
+            btn.innerText = "PRZETWARZANIE...";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                closePayment();
+                if(method === 'digital') {
+                    showSuccessNotification("Sukces! Umowa została wysłana do e-podpisu. Sprawdź skrzynkę e-mail.");
+                } else {
+                    window.print();
+                }
+                btn.innerText = "Zapłać przez BLIK / Karta";
+                btn.disabled = false;
+            }, 1500);
+        }
+
+        function showSuccessNotification(msg) {
+            const div = document.createElement('div');
+            div.className = "fixed bottom-5 right-5 bg-green-600 text-white p-6 rounded-lg shadow-2xl z-[200] font-bold";
+            div.innerHTML = msg;
+            document.body.appendChild(div);
+            setTimeout(() => div.remove(), 5000);
+        }
+    </script>
+</body>
+</html>
